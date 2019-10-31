@@ -7,3 +7,16 @@ set(CMAKE_CXX_RELEASE_FLAGS "${CMAKE_CXX_RELEASE_FLAGS} -O3")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+find_package(Catch2)
+
+# Set up testing framework
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND Catch2_FOUND)
+    include(CTest)
+
+    # Prepare the "Catch" library
+    include_directories(${Catch2_INCLUDE_DIR})
+endif()
+
+include_directories(./include)
+
+add_subdirectory(core)
