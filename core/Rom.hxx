@@ -2,9 +2,12 @@
 #define ROM_HXX
 
 #include <map>
+#include <cstdint>
 #include <vector>
 #include <string>
 #include <filesystem>
+
+#include "RomBank.hpp"
 
 
 namespace goober {
@@ -24,6 +27,11 @@ namespace goober {
         explicit Rom(const std::filesystem::path& romFile);
 
         /**
+         * Destructs the Rom object.
+         */
+        ~Rom();
+
+        /**
          * Loads the specified ROM into memory.
          * 
          * @param romPath path to the ROM
@@ -37,27 +45,28 @@ namespace goober {
          * @return a single byte containing the read data
          */
         uint8_t read(uint16_t address);
-    private:
+
+    protected:
         // Basic ROM info
-        uint16_t m_romBanks;
-        uint8_t m_ramSize;
-        std::vector<uint8_t> m_title;
-        std::vector<uint8_t> m_mfgCode;
-        std::string m_cartType;
-        std::string m_licensee;
-        uint8_t m_versionNumber;
+        uint16_t bankCount = 0;
+        uint8_t ramSize = 0;
+        char title[16];
+        char mfgCode[4];
+        std::string cartType;
+        std::string licensee;
+        uint8_t versionNumber = 1;
 
         // Special feature flags
-        bool m_cgbOnly;
-        bool m_sgbSupport;
-        bool m_japanOnly;
+        bool cgbOnly = false;
+        bool sgbSupport = false;
+        bool japanOnly = false;
 
         // ROM data
-        typedef std::vector<uint8_t> bank;
-        bank bank00;
-        bank bankNN;
-        std::vector<bank> romBanks;
+        RomBank bank00;
+        RomBank bankNN;
+        std::vector<RomBank> romBanks;
 
+    private:
         /**
          * Uses the header data in bank00 to populate member variables containing
          * data useful for ROM compatibility.
@@ -86,6 +95,20 @@ namespace goober {
          * @param bankIdx index of the bank to switch bankNN over to
          */
         void setBank(uint16_t bankIdx);
+
+        /**
+         * Copies the data from inData to bank00.
+         *
+         * @param inData
+         */
+        void loadBank00(const uint8_t* inData);
+
+        /**
+         * Copies the data from inData to bankNN.
+         *
+         * @param inData
+         */
+        void loadBankNN(const uint8_t* inData);
     };
 };
 #endif // ROM_HXX

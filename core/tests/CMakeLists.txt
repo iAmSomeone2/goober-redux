@@ -1,1 +1,1 @@
-add_executable(test-rom test_Rom.cxx)
+add_executable(rom-test RomTest.cpp)

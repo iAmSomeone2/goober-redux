@@ -4,47 +4,54 @@
     <generated>
       <config projectName="goober" targetName="ExperimentalBuild" />
       <config projectName="goober" targetName="NightlyMemCheck" />
-      <config projectName="goober" targetName="test-rom" />
-      <config projectName="goober" targetName="Continuous" />
       <config projectName="goober" targetName="NightlyCoverage" />
+      <config projectName="goober" targetName="Continuous" />
       <config projectName="goober" targetName="ExperimentalConfigure" />
       <config projectName="goober" targetName="ExperimentalTest" />
       <config projectName="goober" targetName="NightlyConfigure" />
       <config projectName="goober" targetName="ExperimentalSubmit" />
-      <config projectName="goober" targetName="Nightly" />
       <config projectName="goober" targetName="NightlyBuild" />
       <config projectName="goober" targetName="NightlySubmit" />
-      <config projectName="goober" targetName="ContinuousBuild" />
+      <config projectName="goober" targetName="Nightly" />
       <config projectName="goober" targetName="NightlyTest" />
-      <config projectName="goober" targetName="ContinuousCoverage" />
+      <config projectName="goober" targetName="ContinuousBuild" />
       <config projectName="goober" targetName="ContinuousUpdate" />
+      <config projectName="goober" targetName="ContinuousCoverage" />
       <config projectName="goober" targetName="ExperimentalStart" />
       <config projectName="goober" targetName="ExperimentalCoverage" />
-      <config projectName="goober" targetName="Experimental" />
       <config projectName="goober" targetName="ExperimentalMemCheck" />
+      <config projectName="goober" targetName="Experimental" />
+      <config projectName="goober" targetName="rom-test" />
       <config projectName="goober" targetName="NightlyMemoryCheck" />
       <config projectName="goober" targetName="goober-core" />
       <config projectName="goober" targetName="ContinuousConfigure" />
       <config projectName="goober" targetName="ContinuousTest" />
-      <config projectName="goober" targetName="ContinuousStart" />
       <config projectName="goober" targetName="NightlyUpdate" />
+      <config projectName="goober" targetName="ContinuousStart" />
       <config projectName="goober" targetName="ContinuousSubmit" />
       <config projectName="goober" targetName="ContinuousMemCheck" />
       <config projectName="goober" targetName="ExperimentalUpdate" />
       <config projectName="goober" targetName="NightlyStart" />
     </generated>
   </component>
-  <component name="CMakeSettings">
+  <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90162b01-54e3-4518-a23f-bc63aa34b142" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/core/RomBank.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/RomBank.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/tests/RomTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/append0x.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/Rom.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.cxx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/Rom.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.hxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/tests/test_Rom.cxx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/RomConstants.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/include/RomConstants.hxx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,10 +66,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="OCResolveContextSettings">
+    <option name="configuration" value="0-goober-core" />
+  </component>
   <component name="ProjectId" id="1Swiskr3YrEyzjkOfieCilgOzwJ" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -76,14 +87,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Catch.Load ROM file in overload Rom object">
-    <configuration name="Load ROM file in basic Rom object" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="test-rom" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="test-rom" TEST_CLASS="[rom]" TEST_METHOD="Load ROM file in basic Rom object" TEST_MODE="SUITE_TEST">
+  <component name="RunManager" selected="CMake Application.rom-test">
+    <configuration name="Load ROM file in basic Rom object" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="test-rom" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="test-rom" TEST_CLASS="[rom]" TEST_METHOD="Load ROM file in basic Rom object" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Load ROM file in overload Rom object" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="test-rom" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="test-rom" TEST_CLASS="[rom]" TEST_METHOD="Load ROM file in overload Rom object" TEST_MODE="SUITE_TEST">
+    <configuration name="Load ROM file in overload Rom object" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="test-rom" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="test-rom" TEST_CLASS="[rom]" TEST_METHOD="Load ROM file in overload Rom object" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -234,12 +245,14 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test-rom" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="test-rom" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="test-rom">
+    <configuration name="rom-test" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="rom-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="rom-test">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="Catch.Load ROM file in basic Rom object" />
+      <item itemvalue="Catch.Load ROM file in overload Rom object" />
       <item itemvalue="CMake Application.Continuous" />
       <item itemvalue="CMake Application.ContinuousBuild" />
       <item itemvalue="CMake Application.ContinuousConfigure" />
@@ -269,14 +282,12 @@
       <item itemvalue="CMake Application.NightlyTest" />
       <item itemvalue="CMake Application.NightlyUpdate" />
       <item itemvalue="CMake Application.goober-core" />
-      <item itemvalue="CMake Application.test-rom" />
-      <item itemvalue="Catch.Load ROM file in basic Rom object" />
-      <item itemvalue="Catch.Load ROM file in overload Rom object" />
+      <item itemvalue="CMake Application.rom-test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Catch.Load ROM file in overload Rom object" />
         <item itemvalue="Catch.Load ROM file in basic Rom object" />
+        <item itemvalue="Catch.Load ROM file in overload Rom object" />
       </list>
     </recent_temporary>
   </component>
@@ -287,7 +298,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572481267776</updated>
-      <workItem from="1572481269423" duration="9087000" />
+      <workItem from="1572481269423" duration="9552000" />
+      <workItem from="1572546699836" duration="10572000" />
     </task>
     <servers />
   </component>
@@ -296,7 +308,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -307,23 +321,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/core/Rom.cxx</url>
-          <line>173</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/core/Rom.cxx</url>
-          <line>99</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/core/Rom.cxx</url>
-          <line>19</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/core/Rom.cxx</url>
-          <line>26</line>
-          <option name="timeStamp" value="28" />
+          <line>110</line>
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

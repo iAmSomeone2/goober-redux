@@ -8,7 +8,7 @@ namespace goober {
 	/**
 	 * Map containing all possible cart types mapped to their in-ROM hex values.
 	 */
-	static std::map<const uint8_t, const std::string> CART_TYPE_MAP {
+	static std::map<uint8_t, std::string> CART_TYPE_MAP {
 		{0x00,"rom_only"},
 		{0x01,"mbc1"},
 		{0x02,"mbc1+ram"},
@@ -42,7 +42,7 @@ namespace goober {
 	/**
 	 * Map containing all possible licensees for the "old" mapping system mapped to their in-ROM hex values.
 	 */
-	static std::map<const uint8_t, const std::string> OLD_LICENSEES_MAP {
+	static std::map<uint8_t, std::string> OLD_LICENSEES_MAP {
 		{0x00,"none"},
 		{0x01,"nintendo"},
 		{0x08,"capcom"},
@@ -196,7 +196,7 @@ namespace goober {
 	/**
 	 * Map containing all possible numbers of ROM banks based on hex value.
 	 */
-	static std::map<const uint8_t, const uint16_t> ROM_BANK_MAP {
+	static std::map<uint8_t, uint16_t> ROM_BANK_MAP {
 		{0x00, 0}, {0x04, 4}, {0x02, 8}, {0x03, 16}, {0x04, 32},
 		{0x05, 64}, {0x06, 128}, {0x07, 256}, {0x08, 512},
 		{0x52, 72}, {0x53, 80}, {0x54, 96}
@@ -205,28 +205,28 @@ namespace goober {
 	/**
 	 * Map for determining how much RAM is needed.
 	 */
-	static std::map<const uint8_t, const uint8_t> RAM_SIZE_MAP {
+	static std::map<uint8_t, uint8_t> RAM_SIZE_MAP {
 		{0x00, 0}, {0x01, 2}, {0x02, 8}, {0x03, 32}, {0x04, 128}, {0x05, 64}
 	};
 
 	/**
 	 * Map for determining if the ROM only works in GameBoy Color mode
 	 */
-	static std::map<const uint8_t, const bool> CGB_FLAG_MAP {
+	static std::map<uint8_t, bool> CGB_FLAG_MAP {
 		{0x80, false}, {0xC0, true}
 	};
 
 	/**
 	 * Map for determining if the ROM has special support for the Super GameBoy
 	 */
-	static std::map<const uint8_t, const bool> SGB_FLAG_MAP {
+	static std::map< uint8_t, bool> SGB_FLAG_MAP {
 		{0x00, false}, {0x30, true}
 	};
 
 	/**
 	 * Map for determining if the ROM is region-locked to Japan
 	 */
-	static std::map<const uint8_t, const bool> DEST_CODE_MAP {
+	static std::map<uint8_t, bool> DEST_CODE_MAP {
 		{0x00, true}, {0x01, false}
 	};
 };

@@ -6,31 +6,29 @@
  */
 
 #include <fstream>
-#include <sstream>
 #include <iostream>
+#include <cstring>
 
 #include "Rom.hxx"
 #include <RomConstants.hxx>
 
-/**
- * Constructs a Rom object without reading in a ROM file.
- */
+
 goober::Rom::Rom() {
-    // Resize the bank vectors.
-    bank00.resize(16384);
-    bankNN.resize(16384);
-    //m_title->resize(16);
-    //m_mfgCode->resize(3);
-}
+    memset(title, 0, 16);
+    memset(mfgCode, 0, 4);
+    cartType = "UNDEFINED";
+    licensee = "UNDEFINED";
+};
 
 goober::Rom::Rom(const std::filesystem::path& romFile) {
-    bank00.resize(16384);
-    bankNN.resize(16384);
-    //m_title->resize(16);
-    //m_mfgCode->resize(3);
-
+    memset(title, 0, 16);
+    memset(mfgCode, 0, 4);
+    cartType = "UNDEFINED";
+    licensee = "UNDEFINED";
     loadRom(romFile);
 }
+
+goober::Rom::~Rom() = default;
 
 /**
  * Loads the specified ROM into memory.
@@ -63,27 +61,22 @@ void goober::Rom::loadRom(const std::filesystem::path& romPath) {
         std::cerr << "WARN: Actual ROM size does not match expected size." << std::endl;
     }
 
-    romBanks.resize(static_cast<size_t>(numBanks));
-    for (auto& bank : romBanks) {
-        bank.resize(16384);
-    }
-
     // Split the ROM into banks and convert to uint8_t
     for (uint16_t i = 0; i < numBanks; i++) {
-        bank tempBank(16384);
+        RomBank tempBank;
         for (uint32_t j = 0; j < 16384; j++) {
             uint32_t romBytesLoc = (16384 * i) + j;
             char currentByte = romBytes[romBytesLoc];
             tempBank[j] = static_cast<uint8_t>(currentByte);
         }
 
-        if (i == 0) {
-            bank00 = tempBank;
-        }
-        romBanks[i] = tempBank;
+        romBanks.push_back(tempBank);
     }
 
-    //saveRomInfo();
+    bankCount = numBanks;
+    bank00 = romBanks[0];
+    bankNN = romBanks[1];
+    saveRomInfo();
 }
 
 /**
@@ -92,28 +85,31 @@ void goober::Rom::loadRom(const std::filesystem::path& romPath) {
  */
 void goober::Rom::saveRomInfo() {
     // Grab the game title
-    std::vector<uint8_t>::const_iterator first = bank00.begin() + 0x0134;
-    std::vector<uint8_t>::const_iterator last = bank00.begin() + 0x0143;
-    std::vector<uint8_t> titleBytes(first, last);
-    // Convert the game title to a string and save it
-    m_title.resize(titleBytes.size());
-    m_title = titleBytes;
+    //std::vector<uint8_t>::const_iterator first = bank00->begin() + 0x0134;
+    //td::vector<uint8_t>::const_iterator last = bank00->begin() + 0x0143;
+    //std::vector<uint8_t> titleBytes(first, last);
+    for (int i = 0x0134; i < 0x0144; i++) {
+        int idx = i - 0x0134;
+        title[idx] = static_cast<char>(bank00[i]);
+    }
+    title[15] = '\0';
     // Do the same for the manufacturing code
-    first = bank00.begin() + 0x013F;
-    last = bank00.begin() + 0x0142;
-    std::vector<uint8_t> mfgCodeBytes(first, last);
-    m_mfgCode.resize(mfgCodeBytes.size());
-    m_mfgCode = mfgCodeBytes;
+    //first = bank00->begin() + 0x013F;
+    //last = bank00->begin() + 0x0142;
+    for (int i = 0x013F; i < 0x0142; i++) {
+        int idx = i - 0x013F;
+        mfgCode[idx] = static_cast<char>(bank00[i]);
+    }
+    mfgCode[3] = '\0';
 
     // Everything else can be directly accessed.
-    m_cgbOnly = goober::CGB_FLAG_MAP[bank00[0x0143]];
-    m_sgbSupport = goober::SGB_FLAG_MAP[bank00[0x0146]];
-    m_cartType = goober::CART_TYPE_MAP[bank00[0x0147]];
-    m_romBanks = goober::ROM_BANK_MAP[bank00[0x0148]];
-    m_ramSize = goober::RAM_SIZE_MAP[bank00[0x0149]];
-    m_japanOnly = goober::DEST_CODE_MAP[bank00[0x014A]];
-    m_licensee = getLicensee(bank00[0x014B]);
-    m_versionNumber = bank00[0x014C];
+    cgbOnly = goober::CGB_FLAG_MAP[bank00[0x0143]];
+    sgbSupport = goober::SGB_FLAG_MAP[bank00[0x0146]];
+    japanOnly = goober::DEST_CODE_MAP[bank00[0x014A]];
+    std::string tmpLicensee = getLicensee(bank00[0x014B]);
+    std::string tmpCartType = goober::CART_TYPE_MAP[bank00[0x0147]];
+    ramSize = goober::RAM_SIZE_MAP[bank00[0x0149]];
+    versionNumber = bank00[0x014C];
 }
  
 /**
@@ -207,7 +203,29 @@ uint8_t goober::Rom::read(uint16_t address) {
  * @param bankIdx index of the bank to switch bankNN over to
  */
 void goober::Rom::setBank(uint16_t bankIdx) {
-    if (bankIdx >= 1 && bankIdx < romBanks.size()) {
+    if (bankIdx >= 1 && bankIdx < bankCount) {
         bankNN = romBanks[bankIdx];
+    }
+}
+
+/**
+ * Copies the data from inData to loadBank.
+ *
+ * @param inData
+ */
+void goober::Rom::loadBank00(const uint8_t* inData) {
+    for (int i = 0; i < 16384; i++) {
+        bank00[i] = inData[i];
+    }
+}
+
+/**
+ * Copies the data from inData to bankNN.
+ *
+ * @param inData
+ */
+void goober::Rom::loadBankNN(const uint8_t* inData) {
+    for (int i = 0; i < 16384; i++) {
+        bankNN[i] = inData[i];
     }
 }
