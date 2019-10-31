@@ -1,6 +1,9 @@
-//
-// Created by bdavidson on 10/31/19.
-//
+/**
+ *  RomBank class for the C++ version of Goober
+ *
+ *  @author Brenden Davidson <davidson.brenden15@gmail.com>
+ *  @date Oct. 31, 2019
+ */
 
 #include "RomBank.hpp"
 

@@ -41,17 +41,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90162b01-54e3-4518-a23f-bc63aa34b142" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/RomBank.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/RomBank.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/tests/RomTest.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/Rom.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.cxx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/Rom.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.hxx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/tests/test_Rom.cxx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/RomConstants.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/include/RomConstants.hxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/RomBank.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/RomBank.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/tests/RomTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/RomTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Core.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/include/Core.hxx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +68,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
+    <property name="settings.editor.selected.configurable" value="dynamic.analysis.tools.profiler" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -299,7 +294,7 @@
       <option name="presentableId" value="Default" />
       <updated>1572481267776</updated>
       <workItem from="1572481269423" duration="9552000" />
-      <workItem from="1572546699836" duration="10572000" />
+      <workItem from="1572546699836" duration="13053000" />
     </task>
     <servers />
   </component>
@@ -315,16 +310,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/core/Rom.cxx</url>
-          <line>110</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

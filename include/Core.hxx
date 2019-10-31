@@ -32,6 +32,17 @@ namespace goober {
          * @return a single byte containing the read data
          */
         uint8_t read(uint16_t address);
+
+        uint8_t getRamSize();
+        std::string getTitle();
+        std::string getMfgCode();
+        std::string getCartType();
+        std::string getLicensee();
+        uint8_t getVersionNumber();
+
+        bool getCgbFlag();
+        bool getSgbFlag();
+        bool getJapanFlag();
     };
 };
 

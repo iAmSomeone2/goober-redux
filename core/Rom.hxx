@@ -46,12 +46,23 @@ namespace goober {
          */
         uint8_t read(uint16_t address);
 
+        uint8_t getRamSize();
+        std::string getTitle();
+        std::string getMfgCode();
+        std::string getCartType();
+        std::string getLicensee();
+        uint8_t getVersionNumber();
+
+        bool getCgbFlag();
+        bool getSgbFlag();
+        bool getJapanFlag();
+
     protected:
         // Basic ROM info
         uint16_t bankCount = 0;
         uint8_t ramSize = 0;
-        char title[16];
-        char mfgCode[4];
+        std::string title;
+        std::string mfgCode;
         std::string cartType;
         std::string licensee;
         uint8_t versionNumber = 1;
@@ -79,7 +90,7 @@ namespace goober {
          * @param filePath path on the filesystem from which to read the file from
          * @return map containing the value pairs
          */
-        static std::map<uint8_t, std::string> loadCsv(std::filesystem::path filePath);
+        static std::map<uint8_t, std::string> loadCsv(const std::filesystem::path& filePath);
 
         /**
          * Returns the appropriate licensee based on the value passed in.
@@ -87,7 +98,7 @@ namespace goober {
          * @param code hex code from the address 0x014B in ROM
          * @return string containing the licensee name if it was found
          */
-        std::string getLicensee(uint8_t code);
+        std::string determineLicensee(uint8_t code);
 
         /**
          * Sets which memory bank to use in place of bankNN.

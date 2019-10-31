@@ -7,22 +7,21 @@
 
 #include <fstream>
 #include <iostream>
-#include <cstring>
 
 #include "Rom.hxx"
 #include <RomConstants.hxx>
 
 
 goober::Rom::Rom() {
-    memset(title, 0, 16);
-    memset(mfgCode, 0, 4);
+    title = "UNDEFINED";
+    mfgCode = "UNDEFINED";
     cartType = "UNDEFINED";
     licensee = "UNDEFINED";
 };
 
 goober::Rom::Rom(const std::filesystem::path& romFile) {
-    memset(title, 0, 16);
-    memset(mfgCode, 0, 4);
+    title = "UNDEFINED";
+    mfgCode = "UNDEFINED";
     cartType = "UNDEFINED";
     licensee = "UNDEFINED";
     loadRom(romFile);
@@ -52,13 +51,13 @@ void goober::Rom::loadRom(const std::filesystem::path& romPath) {
     romFile.close();
 
     // Determine our expected values
-    uint16_t numBanks = romSize >> 14; // Same as dividing by 16,384 but much faster
+    uint16_t numBanks = romSize >> static_cast<uint8_t >(14); // Same as dividing by 16,384 but much faster
     char expectedBanksHex = romBytes[0x0148];
     uint16_t numExpectedBanks = goober::ROM_BANK_MAP[expectedBanksHex];
 
     // Check if the expected and actual bank numbers match up
     if (numBanks != numExpectedBanks && numBanks != 2) {
-        std::cerr << "WARN: Actual ROM size does not match expected size." << std::endl;
+        std::clog << "WARN: Actual ROM size does not match expected size." << std::endl;
     }
 
     // Split the ROM into banks and convert to uint8_t
@@ -88,28 +87,38 @@ void goober::Rom::saveRomInfo() {
     //std::vector<uint8_t>::const_iterator first = bank00->begin() + 0x0134;
     //td::vector<uint8_t>::const_iterator last = bank00->begin() + 0x0143;
     //std::vector<uint8_t> titleBytes(first, last);
+    char tmpTitle[16];
     for (int i = 0x0134; i < 0x0144; i++) {
         int idx = i - 0x0134;
-        title[idx] = static_cast<char>(bank00[i]);
+        tmpTitle[idx] = static_cast<char>(bank00[i]);
     }
-    title[15] = '\0';
+    tmpTitle[15] = '\0';
+    title = tmpTitle;
     // Do the same for the manufacturing code
     //first = bank00->begin() + 0x013F;
     //last = bank00->begin() + 0x0142;
+    char tmpMfgCode[4];
     for (int i = 0x013F; i < 0x0142; i++) {
         int idx = i - 0x013F;
-        mfgCode[idx] = static_cast<char>(bank00[i]);
+        tmpMfgCode[idx] = static_cast<char>(bank00[i]);
     }
-    mfgCode[3] = '\0';
-
+    tmpMfgCode[3] = '\0';
+    mfgCode = tmpMfgCode;
     // Everything else can be directly accessed.
     cgbOnly = goober::CGB_FLAG_MAP[bank00[0x0143]];
     sgbSupport = goober::SGB_FLAG_MAP[bank00[0x0146]];
     japanOnly = goober::DEST_CODE_MAP[bank00[0x014A]];
-    std::string tmpLicensee = getLicensee(bank00[0x014B]);
+    std::string tmpLicensee = determineLicensee(bank00[0x014B]);
     std::string tmpCartType = goober::CART_TYPE_MAP[bank00[0x0147]];
     ramSize = goober::RAM_SIZE_MAP[bank00[0x0149]];
     versionNumber = bank00[0x014C];
+
+    try {
+        licensee = tmpLicensee;
+        cartType = tmpCartType;
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
  
 /**
@@ -118,7 +127,7 @@ void goober::Rom::saveRomInfo() {
  * @param filePath path on the filesystem from which to read the file from
  * @return map containing the value pairs
  */
-std::map<uint8_t, std::string> goober::Rom::loadCsv(std::filesystem::path filePath) {
+std::map<uint8_t, std::string> goober::Rom::loadCsv(const std::filesystem::path& filePath) {
     std::ifstream csvFile(filePath, std::ios::in);
     if (!csvFile.is_open()){
         std::cerr << "Failed to open " << filePath.string() << std::endl;
@@ -164,20 +173,20 @@ std::map<uint8_t, std::string> goober::Rom::loadCsv(std::filesystem::path filePa
  * @param code hex code from the address 0x014B in ROM
  * @return string containing the licensee name if it was found
  */
-std::string goober::Rom::getLicensee(uint8_t code) {
-    std::string licensee;
+std::string goober::Rom::determineLicensee(uint8_t code) {
+    std::string tmpLicensee;
 
     if (code == 0x33) {
         // Read directly from bytes 0x0144 and 0x0145
         uint8_t asciiCode[] = {
             bank00[0x0144], bank00[0x0145]
         };
-        licensee = reinterpret_cast<const char *>(asciiCode);
+        tmpLicensee = reinterpret_cast<const char *>(asciiCode);
     } else {
-        licensee = goober::OLD_LICENSEES_MAP[code];
+        tmpLicensee = goober::OLD_LICENSEES_MAP[code];
     }
 
-    return licensee;
+    return tmpLicensee;
 }
 
 /**
@@ -228,4 +237,41 @@ void goober::Rom::loadBankNN(const uint8_t* inData) {
     for (int i = 0; i < 16384; i++) {
         bankNN[i] = inData[i];
     }
+}
+
+// Getters
+std::string goober::Rom::getTitle() {
+    return title;
+}
+
+uint8_t goober::Rom::getRamSize() {
+    return ramSize;
+}
+
+std::string goober::Rom::getCartType() {
+    return cartType;
+}
+
+std::string goober::Rom::getMfgCode() {
+    return mfgCode;
+}
+
+std::string goober::Rom::getLicensee() {
+    return licensee;
+}
+
+uint8_t goober::Rom::getVersionNumber() {
+    return versionNumber;
+}
+
+bool goober::Rom::getCgbFlag() {
+    return cgbOnly;
+}
+
+bool goober::Rom::getSgbFlag() {
+    return sgbSupport;
+}
+
+bool goober::Rom::getJapanFlag() {
+    return japanOnly;
 }
