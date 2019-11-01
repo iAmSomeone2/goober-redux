@@ -9,6 +9,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(GTest)
 
+if(NOT GTEST_FOUND)
+    set(BUILD_TESTING OFF)
+endif()
+
 # Set up testing framework
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND GTEST_FOUND)
     include(CTest)

@@ -1,3 +1,7 @@
+# Python virtual env
+**/venv/
+**/env/
+
 # VSCode config files
 **/.vscode/
 

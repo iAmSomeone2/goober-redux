@@ -41,12 +41,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90162b01-54e3-4518-a23f-bc63aa34b142" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/core/Ram.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/Ram.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/goober_redux.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/goober_redux.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Rom.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.cxx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Rom.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.hxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Rom.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Rom.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/RomBank.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/RomBank.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/RomBank.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/RomBank.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/cart_types.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/old_licensees.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/tests/RomTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/RomTest.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Core.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/include/Core.hxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/RomConstants.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/include/RomConstants.hxx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +78,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="dynamic.analysis.tools.profiler" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -82,14 +93,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="CMake Application.rom-test">
-    <configuration name="Load ROM file in basic Rom object" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="test-rom" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="test-rom" TEST_CLASS="[rom]" TEST_METHOD="Load ROM file in basic Rom object" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Load ROM file in overload Rom object" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="test-rom" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="test-rom" TEST_CLASS="[rom]" TEST_METHOD="Load ROM file in overload Rom object" TEST_MODE="SUITE_TEST">
+  <component name="RunManager" selected="Google Test.RomTest">
+    <configuration name="RomTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="rom-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="rom-test" TEST_CLASS="RomTest" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -246,8 +251,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Catch.Load ROM file in basic Rom object" />
-      <item itemvalue="Catch.Load ROM file in overload Rom object" />
       <item itemvalue="CMake Application.Continuous" />
       <item itemvalue="CMake Application.ContinuousBuild" />
       <item itemvalue="CMake Application.ContinuousConfigure" />
@@ -278,11 +281,11 @@
       <item itemvalue="CMake Application.NightlyUpdate" />
       <item itemvalue="CMake Application.goober-core" />
       <item itemvalue="CMake Application.rom-test" />
+      <item itemvalue="Google Test.RomTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Catch.Load ROM file in basic Rom object" />
-        <item itemvalue="Catch.Load ROM file in overload Rom object" />
+        <item itemvalue="Google Test.RomTest" />
       </list>
     </recent_temporary>
   </component>
@@ -294,7 +297,8 @@
       <option name="presentableId" value="Default" />
       <updated>1572481267776</updated>
       <workItem from="1572481269423" duration="9552000" />
-      <workItem from="1572546699836" duration="13053000" />
+      <workItem from="1572546699836" duration="13276000" />
+      <workItem from="1572569554711" duration="5021000" />
     </task>
     <servers />
   </component>

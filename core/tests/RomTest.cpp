@@ -6,7 +6,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../Rom.hxx"
+#include "../Rom.hpp"
 
 class RomTest : public ::testing::Test {
 protected:
@@ -22,6 +22,7 @@ protected:
 };
 
 TEST_F(RomTest, OpenRomWithDefaultConstructor) {
+    std::cout << "Running test `Open Rom with default constructor`..." << std::endl;
     goober::Rom rom;
     rom.loadRom(testRom);
     ASSERT_STREQ(rom.getTitle().c_str(), expectedTitle.c_str());
@@ -29,12 +30,14 @@ TEST_F(RomTest, OpenRomWithDefaultConstructor) {
 }
 
 TEST_F(RomTest, OpenRomInConstructor) {
+    std::cout << "Running test `Open Rom in constructor`..." << std::endl;
     goober::Rom rom(testRom);
     ASSERT_STREQ(rom.getTitle().c_str(), expectedTitle.c_str());
     ASSERT_STREQ(rom.getLicensee().c_str(), expectedLicensee.c_str());
 }
 
 TEST_F(RomTest, RomDoesNotExist) {
+    std::cout << "Running test `Rom does not exist`..." << std::endl;
     goober::Rom rom;
     ASSERT_THROW(rom.loadRom(""), std::runtime_error);
     ASSERT_STREQ(rom.getTitle().c_str(), "UNDEFINED");

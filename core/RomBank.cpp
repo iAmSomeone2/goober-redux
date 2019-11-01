@@ -7,9 +7,7 @@
 
 #include "RomBank.hpp"
 
-goober::RomBank::RomBank() {
-    data.resize(16384);
-}
+goober::RomBank::RomBank() = default;
 
 goober::RomBank::RomBank(const uint8_t *initData) {
     loadBank(initData);
@@ -36,23 +34,25 @@ uint8_t &goober::RomBank::operator[](uint16_t index) {
 }
 
 void goober::RomBank::loadBank(const uint8_t *initData) {
-    for (int i = 0; i < BANK_SIZE; i++) {
-        data.push_back(initData[i]);
+    for (int i = 0; i < ROM_BANK_SIZE; i++) {
+        data[i] = initData[i];
     }
 }
 
 void goober::RomBank::loadBank(const char *initData) {
-    for (int i = 0; i < BANK_SIZE; ++i) {
-        data.push_back(static_cast<uint8_t>(initData[i]));
+    for (int i = 0; i < ROM_BANK_SIZE; ++i) {
+        data[i] = static_cast<uint8_t>(initData[i]);
     }
 }
 
 void goober::RomBank::loadBank(const std::vector<uint8_t> &initData) {
-    data = initData;
+    for (int i = 0; i < ROM_BANK_SIZE; ++i) {
+        data[i] = initData[i];
+    }
 }
 
 void goober::RomBank::loadBank(const std::vector<char> &initData) {
-    for (int i = 0; i < BANK_SIZE; ++i) {
-        data.push_back(static_cast<uint8_t>(initData[i]));
+    for (int i = 0; i < ROM_BANK_SIZE; ++i) {
+        data[i] = static_cast<uint8_t>(initData[i]);
     }
 }

@@ -44,6 +44,6 @@ namespace goober {
         bool getSgbFlag();
         bool getJapanFlag();
     };
-};
+}
 
 #endif

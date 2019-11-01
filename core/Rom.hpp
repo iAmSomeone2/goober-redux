@@ -85,14 +85,6 @@ namespace goober {
         void saveRomInfo();
 
         /**
-         * Loads in the specified CSV file and returns a map containg the value pairs.
-         * 
-         * @param filePath path on the filesystem from which to read the file from
-         * @return map containing the value pairs
-         */
-        static std::map<uint8_t, std::string> loadCsv(const std::filesystem::path& filePath);
-
-        /**
          * Returns the appropriate licensee based on the value passed in.
          * 
          * @param code hex code from the address 0x014B in ROM

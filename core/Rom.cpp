@@ -3,12 +3,13 @@
  * 
  *  @author Brenden Davidson <davidson.brenden15@gmail.com>
  *  @date Oct. 30, 2019
+ *  @version 0.1
  */
 
 #include <fstream>
 #include <iostream>
 
-#include "Rom.hxx"
+#include "Rom.hpp"
 #include <RomConstants.hxx>
 
 
@@ -58,13 +59,16 @@ void goober::Rom::loadRom(const std::filesystem::path& romPath) {
     // Check if the expected and actual bank numbers match up
     if (numBanks != numExpectedBanks && numBanks != 2) {
         std::clog << "WARN: Actual ROM size does not match expected size." << std::endl;
+        bankCount = numBanks;
+    } else {
+        bankCount = numExpectedBanks;
     }
 
     // Split the ROM into banks and convert to uint8_t
     for (uint16_t i = 0; i < numBanks; i++) {
         RomBank tempBank;
-        for (uint32_t j = 0; j < 16384; j++) {
-            uint32_t romBytesLoc = (16384 * i) + j;
+        for (uint32_t j = 0; j < ROM_BANK_SIZE; j++) {
+            uint32_t romBytesLoc = (ROM_BANK_SIZE * i) + j;
             char currentByte = romBytes[romBytesLoc];
             tempBank[j] = static_cast<uint8_t>(currentByte);
         }
@@ -97,75 +101,24 @@ void goober::Rom::saveRomInfo() {
     // Do the same for the manufacturing code
     //first = bank00->begin() + 0x013F;
     //last = bank00->begin() + 0x0142;
-    char tmpMfgCode[4];
-    for (int i = 0x013F; i < 0x0142; i++) {
+    char tmpMfgCode[5];
+    for (int i = 0x013F; i <= 0x0142; i++) {
         int idx = i - 0x013F;
         tmpMfgCode[idx] = static_cast<char>(bank00[i]);
     }
-    tmpMfgCode[3] = '\0';
+    tmpMfgCode[4] = '\0';
     mfgCode = tmpMfgCode;
+
     // Everything else can be directly accessed.
     cgbOnly = goober::CGB_FLAG_MAP[bank00[0x0143]];
     sgbSupport = goober::SGB_FLAG_MAP[bank00[0x0146]];
     japanOnly = goober::DEST_CODE_MAP[bank00[0x014A]];
-    std::string tmpLicensee = determineLicensee(bank00[0x014B]);
-    std::string tmpCartType = goober::CART_TYPE_MAP[bank00[0x0147]];
+    licensee = determineLicensee(bank00[0x014B]);
+    cartType = goober::CART_TYPE_MAP[bank00[0x0147]];
     ramSize = goober::RAM_SIZE_MAP[bank00[0x0149]];
     versionNumber = bank00[0x014C];
-
-    try {
-        licensee = tmpLicensee;
-        cartType = tmpCartType;
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
-    }
 }
- 
-/**
- * Loads in the specified CSV file and returns a map containg the value pairs.
- * 
- * @param filePath path on the filesystem from which to read the file from
- * @return map containing the value pairs
- */
-std::map<uint8_t, std::string> goober::Rom::loadCsv(const std::filesystem::path& filePath) {
-    std::ifstream csvFile(filePath, std::ios::in);
-    if (!csvFile.is_open()){
-        std::cerr << "Failed to open " << filePath.string() << std::endl;
-        throw std::runtime_error("Failed to open file.");
-    }
 
-    // Count number of lines in the file
-    std::string tmp;
-    uint32_t numLines = 0;
-    while (std::getline(csvFile, tmp)) {
-        numLines++;
-    }
-    csvFile.seekg(0, std::ios::beg);
-
-    // Set up a vector to hold the lines
-    std::vector<std::string> lines(numLines);
-    uint32_t lineNum = 0;
-    while (std::getline(csvFile, tmp)) {
-        lines[lineNum] = tmp;
-    }
-
-    csvFile.close();
-
-    std::map<uint8_t, std::string> valueMap;
-
-    // Split each line, convert the hex values, and store the results in the return map
-    for (const std::string& line : lines) {
-        // Find the comma
-        auto commaIdx = static_cast<uint32_t>(line.find(',', 0));
-        std::string hexCode = line.substr(0, commaIdx);
-        std::string strValue = line.substr(commaIdx);
-
-        auto hexVal = static_cast<uint8_t>(std::stoul(hexCode, nullptr, 16));
-        valueMap[hexVal] = strValue;
-    }
-
-    return valueMap;
-}
 
 /**
  * Returns the appropriate licensee based on the value passed in.

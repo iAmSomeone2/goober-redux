@@ -1,3 +1,6 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cert-err58-cpp"
+
 #ifndef ROM_CONSTANTS_HPP
 #define ROM_CONSTANTS_HPP
 
@@ -5,6 +8,8 @@
 #include <string>
 
 namespace goober {
+    static const uint16_t ROM_BANK_SIZE = 16384;
+
 	/**
 	 * Map containing all possible cart types mapped to their in-ROM hex values.
 	 */
@@ -197,7 +202,7 @@ namespace goober {
 	 * Map containing all possible numbers of ROM banks based on hex value.
 	 */
 	static std::map<uint8_t, uint16_t> ROM_BANK_MAP {
-		{0x00, 0}, {0x04, 4}, {0x02, 8}, {0x03, 16}, {0x04, 32},
+		{0x00, 0}, {0x01, 4}, {0x02, 8}, {0x03, 16}, {0x04, 32},
 		{0x05, 64}, {0x06, 128}, {0x07, 256}, {0x08, 512},
 		{0x52, 72}, {0x53, 80}, {0x54, 96}
 	};
@@ -232,3 +237,4 @@ namespace goober {
 };
 
 #endif
+#pragma clang diagnostic pop
