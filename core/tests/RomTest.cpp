@@ -15,7 +15,7 @@ protected:
     std::string expectedLicensee;
 
     RomTest() {
-        testRom = "/run/media/bdavidson/Linux_Data/retropie/roms/gb/Super_Mario_Land.gb";
+        testRom = "/home/bdavidson/roms/gb/Super_Mario_Land.gb";
         expectedTitle = "SUPER MARIOLAND";
         expectedLicensee = "nintendo";
     }

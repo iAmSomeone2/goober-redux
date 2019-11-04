@@ -19,13 +19,15 @@
       <config projectName="goober" targetName="ContinuousCoverage" />
       <config projectName="goober" targetName="ExperimentalStart" />
       <config projectName="goober" targetName="ExperimentalCoverage" />
+      <config projectName="goober" targetName="goober-core-mmu" />
       <config projectName="goober" targetName="ExperimentalMemCheck" />
       <config projectName="goober" targetName="Experimental" />
       <config projectName="goober" targetName="rom-test" />
       <config projectName="goober" targetName="NightlyMemoryCheck" />
-      <config projectName="goober" targetName="goober-core" />
+      <config projectName="goober" targetName="ram-test" />
       <config projectName="goober" targetName="ContinuousConfigure" />
       <config projectName="goober" targetName="ContinuousTest" />
+      <config projectName="goober" targetName="mmu-test" />
       <config projectName="goober" targetName="NightlyUpdate" />
       <config projectName="goober" targetName="ContinuousStart" />
       <config projectName="goober" targetName="ContinuousSubmit" />
@@ -41,22 +43,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90162b01-54e3-4518-a23f-bc63aa34b142" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/Ram.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/Ram.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/Mmu.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/Mmu.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/tests/MmuTest.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/tests/RamTest.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/goober_redux.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/goober_redux.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Rom.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Rom.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/RomBank.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/RomBank.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Ram.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/Ram.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Ram.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/Ram.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Rom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Rom.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/RomBank.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/RomBank.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/cart_types.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/old_licensees.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/tests/RomTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/RomTest.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Core.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/include/Core.hxx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/RomConstants.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/include/RomConstants.hxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv2hpp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Core.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/include/Core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/RomConstants.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/include/RomConstants.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prepend0x.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,15 +75,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="OCResolveContextSettings">
-    <option name="configuration" value="0-goober-core" />
-  </component>
   <component name="ProjectId" id="1Swiskr3YrEyzjkOfieCilgOzwJ" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -93,7 +100,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Google Test.RomTest">
+  <component name="RunManager" selected="Google Test.MMUTest">
+    <configuration name="MMUTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="mmu-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="mmu-test" TEST_CLASS="MMUTest" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RamTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="ram-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="ram-test" TEST_CLASS="RamTest" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RomTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="rom-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="rom-test" TEST_CLASS="RomTest" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -240,7 +259,17 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="goober-core" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="goober-core" CONFIG_NAME="Debug">
+    <configuration name="goober-core-mmu" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="goober-core-mmu" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mmu-test" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="mmu-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="mmu-test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ram-test" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="ram-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="ram-test">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -279,12 +308,18 @@
       <item itemvalue="CMake Application.NightlySubmit" />
       <item itemvalue="CMake Application.NightlyTest" />
       <item itemvalue="CMake Application.NightlyUpdate" />
-      <item itemvalue="CMake Application.goober-core" />
+      <item itemvalue="CMake Application.goober-core-mmu" />
+      <item itemvalue="CMake Application.mmu-test" />
+      <item itemvalue="CMake Application.ram-test" />
       <item itemvalue="CMake Application.rom-test" />
       <item itemvalue="Google Test.RomTest" />
+      <item itemvalue="Google Test.RamTest" />
+      <item itemvalue="Google Test.MMUTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.MMUTest" />
+        <item itemvalue="Google Test.RamTest" />
         <item itemvalue="Google Test.RomTest" />
       </list>
     </recent_temporary>
@@ -299,8 +334,12 @@
       <workItem from="1572481269423" duration="9552000" />
       <workItem from="1572546699836" duration="13276000" />
       <workItem from="1572569554711" duration="5021000" />
+      <workItem from="1572833606326" duration="16957000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

@@ -1,23 +1,58 @@
 
-set(SOURCES Rom.cpp Rom.hpp RomBank.cpp RomBank.hpp Ram.cpp Ram.hpp)
+set(SOURCES
+    Rom.cpp Rom.hpp
+    RomBank.cpp RomBank.hpp
+    Ram.cpp Ram.hpp
+    RamBank.cpp RamBank.hpp
+    Mmu.cpp Mmu.hpp)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND BUILD_TESTING)
     add_subdirectory(tests)
 endif()
 
-add_library(goober-core STATIC ${SOURCES})
-set_target_properties(goober-core PROPERTIES VERISION ${PROJECT_VERSION})
+find_package(Boost 1.29 REQUIRED)
+
+add_library(goober-core-mmu STATIC ${SOURCES})
+set_target_properties(goober-core-mmu PROPERTIES VERISION ${PROJECT_VERSION})
+
+target_include_directories(goober-core-mmu PRIVATE SYSTEM ${Boost_INCLUDE_DIRS})
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     if(BUILD_TESTING STREQUAL ON)
+
+        # ROM test setup
         target_link_libraries(rom-test PUBLIC GTest::GTest GTest::Main)
-        target_link_libraries(rom-test PUBLIC goober-core)
+        target_link_libraries(rom-test PUBLIC goober-core-mmu)
 
         add_test(
             NAME
                 TestRomObject
             COMMAND
-                test-rom
+                rom-test
             )
+
+        # RAM test setup
+        target_link_libraries(ram-test PUBLIC GTest::GTest GTest::Main)
+        target_link_libraries(ram-test PUBLIC goober-core-mmu)
+        target_include_directories(ram-test PRIVATE SYSTEM ${Boost_INCLUDE_DIRS})
+
+        add_test(
+            NAME
+                TestRamObject
+            COMMAND
+                ram-test
+        )
+
+        # MMU test setup
+        target_link_libraries(mmu-test PUBLIC GTest::GTest GTest::Main)
+        target_link_libraries(mmu-test PUBLIC goober-core-mmu)
+        target_include_directories(mmu-test PRIVATE SYSTEM ${Boost_INCLUDE_DIRS})
+
+        add_test(
+            NAME
+                TestMmuObject
+            COMMAND
+                mmu-test
+        )
     endif()
 endif()

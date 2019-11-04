@@ -10,7 +10,7 @@
 #include <iostream>
 
 #include "Rom.hpp"
-#include <RomConstants.hxx>
+#include <RomConstants.hpp>
 
 
 goober::Rom::Rom() {
@@ -27,8 +27,6 @@ goober::Rom::Rom(const std::filesystem::path& romFile) {
     licensee = "UNDEFINED";
     loadRom(romFile);
 }
-
-goober::Rom::~Rom() = default;
 
 /**
  * Loads the specified ROM into memory.

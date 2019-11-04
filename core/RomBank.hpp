@@ -9,7 +9,7 @@
 #include <vector>
 #include <array>
 
-#include <RomConstants.hxx>
+#include <RomConstants.hpp>
 
 namespace goober {
     class RomBank {

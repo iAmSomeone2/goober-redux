@@ -26,10 +26,6 @@ namespace goober {
          */
         explicit Rom(const std::filesystem::path& romFile);
 
-        /**
-         * Destructs the Rom object.
-         */
-        ~Rom();
 
         /**
          * Loads the specified ROM into memory.
