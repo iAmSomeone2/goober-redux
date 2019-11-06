@@ -15,6 +15,7 @@
 namespace goober {
     class MMU {
     private:
+        bool isInitialized;
         Ram ram;
         Rom rom;
 
@@ -25,6 +26,10 @@ namespace goober {
          * @param romPath path on filesystem to the ROM file.
          */
         explicit MMU(const std::filesystem::path& romPath);
+
+        MMU();
+
+        void init(const std::filesystem::path& romPath);
 
         /**
          * Retrieves the byte at the specified memory address.

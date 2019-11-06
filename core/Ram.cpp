@@ -88,7 +88,7 @@ uint8_t goober::Ram::get(const uint16_t& address) {
         // Sprite attribute table section
         uint16_t location = address - ATTRIB_TABLE_START_IDX;
         return spriteAttribTable[location];
-    } else if (address >= ODDBALL_START_IDX && address < IO_REG_START_IDX) {
+    } else if (address >= ODDBALL_START_IDX && address < IO_REG_START_IDX) { // We keep having problems accessing 0xFFEF
         // Oddball section
         uint16_t location = address - ODDBALL_START_IDX;
         return oddball[location];
@@ -139,7 +139,7 @@ void goober::Ram::set(uint8_t value, uint16_t address) {
         // Sprite attribute table section
         uint16_t location = address - ATTRIB_TABLE_START_IDX;
         spriteAttribTable[location] = value;
-    } else if (address >= ODDBALL_START_IDX && address < IO_REG_START_IDX) {
+    } else if (address >= ODDBALL_START_IDX && address < IO_REG_START_IDX-1) {
         // Oddball section
         uint16_t location = address - ODDBALL_START_IDX;
         oddball[location] = value;

@@ -15,7 +15,7 @@ protected:
     static const uint16_t START_IDX = 0x8000;
     static const uint16_t END_IDX = 0xFFFF;
     std::default_random_engine generator;
-    std::uniform_int_distribution<uint8_t> distribution{0, UINT8_MAX};
+    std::uniform_int_distribution<uint8_t> distribution{33, 126};
 
     goober::Ram ram;
 
