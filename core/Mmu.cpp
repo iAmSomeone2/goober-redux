@@ -13,21 +13,30 @@
  * @param romPath path on filesystem to the ROM file.
  */
 goober::MMU::MMU(const std::filesystem::path& romPath) {
-    this->init(romPath);
+    rom = new Rom(romPath);
+    ram = new Ram(1, rom->getRamSize(), 2);
+    isInitialized = true;
 }
 
 
 goober::MMU::MMU() {
+    rom = new Rom();
+    ram = new Ram();
     isInitialized = false;
 }
 
+goober::MMU::~MMU() {
+    delete(rom);
+    delete(ram);
+}
+
 void goober::MMU::init(const std::filesystem::path &romPath) {
-    rom.loadRom(romPath);
+    rom->loadRom(romPath);
 
     // Video RAM and Work RAM will be resizeable when GBC support is implemented.
-    ram.setVRamBankCount(1);
-    ram.setExRamBankCount(rom.getRamSize());
-    ram.setWRamBankCount(1);
+    ram->setVRamBankCount(1);
+    ram->setExRamBankCount(rom->getRamSize());
+    ram->setWRamBankCount(1);
     isInitialized = true;
 }
 
@@ -46,9 +55,9 @@ uint8_t goober::MMU::get(uint16_t address) {
     uint8_t value = 0;
 
     if (address < VRAM_START_IDX) {
-        value = rom.read(address);
+        value = rom->read(address);
     } else {
-        value = ram.get(address);
+        value = ram->get(address);
     }
 
     return value;
@@ -70,6 +79,6 @@ void goober::MMU::set(uint8_t value, uint16_t address) {
     if (address < VRAM_START_IDX) {
         std::clog << boost::format("Attempted to write to ROM at 0x%04x") %address << std::endl;
     } else {
-        ram.set(value, address);
+        ram->set(value, address);
     }
 }

@@ -69,9 +69,8 @@ namespace goober {
         bool japanOnly = false;
 
         // ROM data
-        RomBank bank00;
-        RomBank bankNN;
         std::vector<RomBank> romBanks;
+        uint16_t activeBank = 1;
 
     private:
         /**

@@ -16,8 +16,8 @@ namespace goober {
     class MMU {
     private:
         bool isInitialized;
-        Ram ram;
-        Rom rom;
+        Ram *ram;
+        Rom *rom;
 
     public:
         /**
@@ -28,6 +28,8 @@ namespace goober {
         explicit MMU(const std::filesystem::path& romPath);
 
         MMU();
+
+        ~MMU();
 
         void init(const std::filesystem::path& romPath);
 

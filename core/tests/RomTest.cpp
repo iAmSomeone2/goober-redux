@@ -7,6 +7,7 @@
 #include <gtest/gtest.h>
 
 #include "../Rom.hpp"
+#include "TestConstants.hpp"
 
 class RomTest : public ::testing::Test {
 protected:
@@ -15,7 +16,7 @@ protected:
     std::string expectedLicensee;
 
     RomTest() {
-        testRom = "/home/bdavidson/roms/gb/Super_Mario_Land.gb";
+        testRom = TEST_ROM_DESKTOP;
         expectedTitle = "SUPER MARIOLAND";
         expectedLicensee = "nintendo";
     }

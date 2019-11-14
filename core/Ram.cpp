@@ -20,10 +20,10 @@ goober::Ram::Ram() {
     for (auto& bank : externRamBanks) {
         bank.setSize(8192);
     }
-    spriteAttribTable.setSize(383);
-    oddball.setSize(95);
-    ioRegisters.setSize(127);
-    highRam.setSize(126);
+    spriteAttribTable.setSize(160);
+    oddball.setSize(96);
+    ioRegisters.setSize(128);
+    highRam.setSize(128);
 
     ieRegister = 0x00;
     activeWorkRamBank = 0b01;
@@ -32,9 +32,21 @@ goober::Ram::Ram() {
 }
 
 goober::Ram::Ram(uint16_t vRamBankCount, uint16_t exRamBankCount, uint16_t workRamBankCount) {
-    videoRamBanks.resize(vRamBankCount);
-    externRamBanks.resize(exRamBankCount);
-    workRamBanks.resize(workRamBankCount);
+    if (vRamBankCount >= 1) {
+        videoRamBanks.resize(vRamBankCount);
+    } else {
+        videoRamBanks.resize(1);
+    }
+    if (exRamBankCount >= 1) {
+        externRamBanks.resize(exRamBankCount);
+    } else {
+        externRamBanks.resize(1);
+    }
+    if (workRamBankCount >= 2) {
+        workRamBanks.resize(workRamBankCount);
+    } else {
+        workRamBanks.resize(2);
+    }
 
     // Set proper sizes of the banks
     for (auto& bank : videoRamBanks) {
@@ -46,10 +58,10 @@ goober::Ram::Ram(uint16_t vRamBankCount, uint16_t exRamBankCount, uint16_t workR
     for (auto& bank : externRamBanks) {
         bank.setSize(8192);
     }
-    spriteAttribTable.setSize(383);
-    oddball.setSize(95);
-    ioRegisters.setSize(127);
-    highRam.setSize(126);
+    spriteAttribTable.setSize(160);
+    oddball.setSize(96);
+    ioRegisters.setSize(128);
+    highRam.setSize(128);
 
     ieRegister = 0x00;
     activeWorkRamBank = 0b01;
@@ -124,11 +136,11 @@ void goober::Ram::set(uint8_t value, uint16_t address) {
         uint16_t location = address - WRAM_START_IDX;
 
         RamBank *workBank;
-        if (address < 0xD000) {
+        if (location < 0x1000) {
             workBank = &workRamBanks[0];
         } else {
             workBank = &workRamBanks[activeWorkRamBank];
-            location = address - 0xD000;
+            location = location - 0x1000;
         }
 
         workBank->set(value, location);
@@ -139,8 +151,9 @@ void goober::Ram::set(uint8_t value, uint16_t address) {
         // Sprite attribute table section
         uint16_t location = address - ATTRIB_TABLE_START_IDX;
         spriteAttribTable[location] = value;
-    } else if (address >= ODDBALL_START_IDX && address < IO_REG_START_IDX-1) {
+    } else if (address >= ODDBALL_START_IDX && address < IO_REG_START_IDX) {
         // Oddball section
+//        std::clog << "Tried to write to the Oddball section." << std::endl;
         uint16_t location = address - ODDBALL_START_IDX;
         oddball[location] = value;
     } else if (address >= IO_REG_START_IDX && address < HRAM_START_IDX) {

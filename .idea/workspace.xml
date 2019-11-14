@@ -2,38 +2,38 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="goober" targetName="mmu-test" />
-      <config projectName="goober" targetName="ContinuousUpdate" />
-      <config projectName="goober" targetName="NightlyTest" />
-      <config projectName="goober" targetName="NightlyUpdate" />
-      <config projectName="goober" targetName="rom-test" />
-      <config projectName="goober" targetName="ExperimentalConfigure" />
-      <config projectName="goober" targetName="ContinuousMemCheck" />
-      <config projectName="goober" targetName="NightlyMemoryCheck" />
-      <config projectName="goober" targetName="NightlyStart" />
-      <config projectName="goober" targetName="ContinuousConfigure" />
       <config projectName="goober" targetName="ExperimentalBuild" />
-      <config projectName="goober" targetName="NightlyConfigure" />
-      <config projectName="goober" targetName="ExperimentalMemCheck" />
-      <config projectName="goober" targetName="ram-test" />
-      <config projectName="goober" targetName="ContinuousStart" />
       <config projectName="goober" targetName="NightlyMemCheck" />
-      <config projectName="goober" targetName="ExperimentalUpdate" />
-      <config projectName="goober" targetName="ExperimentalSubmit" />
-      <config projectName="goober" targetName="ContinuousCoverage" />
-      <config projectName="goober" targetName="Experimental" />
-      <config projectName="goober" targetName="ContinuousSubmit" />
-      <config projectName="goober" targetName="ExperimentalTest" />
-      <config projectName="goober" targetName="goober-core-mmu" />
-      <config projectName="goober" targetName="ContinuousTest" />
-      <config projectName="goober" targetName="ExperimentalCoverage" />
-      <config projectName="goober" targetName="NightlyBuild" />
       <config projectName="goober" targetName="NightlyCoverage" />
       <config projectName="goober" targetName="Continuous" />
-      <config projectName="goober" targetName="ExperimentalStart" />
+      <config projectName="goober" targetName="ExperimentalConfigure" />
+      <config projectName="goober" targetName="ExperimentalTest" />
+      <config projectName="goober" targetName="NightlyConfigure" />
+      <config projectName="goober" targetName="ExperimentalSubmit" />
+      <config projectName="goober" targetName="NightlyBuild" />
       <config projectName="goober" targetName="NightlySubmit" />
-      <config projectName="goober" targetName="ContinuousBuild" />
       <config projectName="goober" targetName="Nightly" />
+      <config projectName="goober" targetName="NightlyTest" />
+      <config projectName="goober" targetName="ContinuousBuild" />
+      <config projectName="goober" targetName="ContinuousUpdate" />
+      <config projectName="goober" targetName="ContinuousCoverage" />
+      <config projectName="goober" targetName="ExperimentalStart" />
+      <config projectName="goober" targetName="goober-core-mmu" />
+      <config projectName="goober" targetName="ExperimentalCoverage" />
+      <config projectName="goober" targetName="ExperimentalMemCheck" />
+      <config projectName="goober" targetName="Experimental" />
+      <config projectName="goober" targetName="rom-test" />
+      <config projectName="goober" targetName="NightlyMemoryCheck" />
+      <config projectName="goober" targetName="ram-test" />
+      <config projectName="goober" targetName="ContinuousConfigure" />
+      <config projectName="goober" targetName="mmu-test" />
+      <config projectName="goober" targetName="ContinuousTest" />
+      <config projectName="goober" targetName="NightlyUpdate" />
+      <config projectName="goober" targetName="ContinuousStart" />
+      <config projectName="goober" targetName="ContinuousSubmit" />
+      <config projectName="goober" targetName="ContinuousMemCheck" />
+      <config projectName="goober" targetName="ExperimentalUpdate" />
+      <config projectName="goober" targetName="NightlyStart" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -43,13 +43,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90162b01-54e3-4518-a23f-bc63aa34b142" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/core/tests/TestConstants.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/Mmu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/Mmu.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/Mmu.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/Mmu.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/Ram.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/Ram.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/RamBank.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/RamBank.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Rom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Rom.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/Rom.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/tests/MmuTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/MmuTest.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/tests/RamTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/RamTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/tests/RomTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/RomTest.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,20 +94,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Google Test.RamTest">
+  <component name="RunManager" selected="Google Test.MMUTest.RamReadAndWrite">
     <configuration name="MMUTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="mmu-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="mmu-test" TEST_CLASS="MMUTest" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MMUTest.AttemptToWriteToROM" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="mmu-test" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="mmu-test" TEST_CLASS="MMUTest" TEST_METHOD="AttemptToWriteToROM" TEST_MODE="SUITE_TEST">
+    <configuration name="MMUTest.AttemptToWriteToROM" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="mmu-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="mmu-test" TEST_CLASS="MMUTest" TEST_METHOD="AttemptToWriteToROM" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MMUTest.RamReadAndWrite" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="mmu-test" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="mmu-test" TEST_CLASS="MMUTest" TEST_METHOD="RamReadAndWrite" TEST_MODE="SUITE_TEST">
+    <configuration name="MMUTest.RamReadAndWrite" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="goober" TARGET_NAME="mmu-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="goober" RUN_TARGET_NAME="mmu-test" TEST_CLASS="MMUTest" TEST_METHOD="RamReadAndWrite" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -321,11 +326,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.MMUTest.RamReadAndWrite" />
+        <item itemvalue="Google Test.MMUTest" />
         <item itemvalue="Google Test.RamTest" />
         <item itemvalue="Google Test.RomTest" />
-        <item itemvalue="Google Test.MMUTest.RamReadAndWrite" />
         <item itemvalue="Google Test.MMUTest.AttemptToWriteToROM" />
-        <item itemvalue="Google Test.MMUTest" />
       </list>
     </recent_temporary>
   </component>
@@ -341,6 +346,8 @@
       <workItem from="1572569554711" duration="5021000" />
       <workItem from="1572833606326" duration="17792000" />
       <workItem from="1572921803161" duration="4754000" />
+      <workItem from="1573709717367" duration="293000" />
+      <workItem from="1573710023535" duration="3381000" />
     </task>
     <servers />
   </component>
@@ -359,5 +366,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/core/Ram.cpp</url>
+          <line>137</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeGoogleTestRunConfigurationType">
+        <watch expression="this-&gt;mmu" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
