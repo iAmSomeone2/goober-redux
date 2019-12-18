@@ -5,6 +5,9 @@
 # VSCode config files
 **/.vscode/
 
+# Idea config files
+**/.idea/
+
 # Build directories
 **/cmake-build-debug/
 **/cmake-build-release/

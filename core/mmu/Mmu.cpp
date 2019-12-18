@@ -7,30 +7,32 @@
 
 #include "Mmu.hpp"
 
+using namespace goober;
+
 /**
  * Initializes the MMU with a rom path so that the correct RAM variables can
  * be set immediately.
  * @param romPath path on filesystem to the ROM file.
  */
-goober::MMU::MMU(const std::filesystem::path& romPath) {
+MMU::MMU(const std::filesystem::path& romPath) {
     rom = new Rom(romPath);
     ram = new Ram(1, rom->getRamSize(), 2);
     isInitialized = true;
 }
 
 
-goober::MMU::MMU() {
+MMU::MMU() {
     rom = new Rom();
     ram = new Ram();
     isInitialized = false;
 }
 
-goober::MMU::~MMU() {
+MMU::~MMU() {
     delete(rom);
     delete(ram);
 }
 
-void goober::MMU::init(const std::filesystem::path &romPath) {
+void MMU::init(const std::filesystem::path &romPath) {
     rom->loadRom(romPath);
 
     // Video RAM and Work RAM will be resizeable when GBC support is implemented.
@@ -47,12 +49,12 @@ void goober::MMU::init(const std::filesystem::path &romPath) {
  * @param address
  * @return
  */
-uint8_t goober::MMU::get(uint16_t address) {
+byte MMU::get(word address) {
     if (!isInitialized) {
         throw std::runtime_error("MMU not initialized.");
     }
 
-    uint8_t value = 0;
+    byte value = 0;
 
     if (address < VRAM_START_IDX) {
         value = rom->read(address);
@@ -71,7 +73,7 @@ uint8_t goober::MMU::get(uint16_t address) {
  * @param value byte to write
  * @param address location to write to
  */
-void goober::MMU::set(uint8_t value, uint16_t address) {
+void MMU::set(byte value, word address) {
     if (!isInitialized) {
         throw std::runtime_error("MMU not initialized.");
     }

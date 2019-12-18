@@ -8,7 +8,11 @@
 #include <filesystem>
 
 #include "RomBank.hpp"
+#include <Definitions.hpp>
 
+
+using std::string;
+namespace fs = std::filesystem;
 
 namespace goober {
     class Rom {
@@ -24,7 +28,7 @@ namespace goober {
          * 
          * @param romFile path to the ROM file to open
          */
-        explicit Rom(const std::filesystem::path& romFile);
+        explicit Rom(const fs::path& romFile);
 
 
         /**
@@ -32,7 +36,7 @@ namespace goober {
          * 
          * @param romPath path to the ROM
          */
-        void loadRom(const std::filesystem::path& romPath);
+        void loadRom(const fs::path& romPath);
 
         /**
          * Returns the byte found at the specified address.
@@ -40,28 +44,56 @@ namespace goober {
          * @param address location in ROM to read from
          * @return a single byte containing the read data
          */
-        uint8_t read(uint16_t address);
+        byte read(word address);
 
-        uint8_t getRamSize();
-        std::string getTitle();
-        std::string getMfgCode();
-        std::string getCartType();
-        std::string getLicensee();
-        uint8_t getVersionNumber();
-
-        bool getCgbFlag();
-        bool getSgbFlag();
-        bool getJapanFlag();
+        // Getters
+        /**
+         * Returns RAM size
+         */
+        byte    getRamSize()        { return this->ramSize; };
+        /**
+         * Returns game title
+        */
+        string  getTitle()          { return this->title; };
+        /**
+         * Returns manufacturing code
+        */
+        string  getMfgCode()        { return this->mfgCode; };
+        /**
+         * Returns cartridge type
+        */
+        string  getCartType()       { return this->cartType; };
+        /**
+         * Returns licensee of original cartridge
+        */
+        string  getLicensee()       { return this->licensee; };
+        /**
+         * Returns ROM version number
+        */
+        byte    getVersionNumber()  { return this->versionNumber; };
+        /**
+         * Returns "true" if the ROM is only for Game Boy Color
+        */
+        bool    getCgbFlag()        { return this->cgbOnly; };
+        /**
+         * Returns "true" if the ROM has enhanced features for the Super Game Boy
+        */
+        bool    getSgbFlag()        { return this->sgbSupport; };
+        /**
+         * Returns "true" if the ROM's region is set to Japan. Returns "false" if
+         * the region is anywhere else.
+        */
+        bool    getJapanFlag()      { return this->japanOnly; };
 
     protected:
         // Basic ROM info
-        uint16_t bankCount = 0;
-        uint8_t ramSize = 0;
-        std::string title;
-        std::string mfgCode;
-        std::string cartType;
-        std::string licensee;
-        uint8_t versionNumber = 1;
+        word bankCount = 0;
+        byte ramSize = 0;
+        string title;
+        string mfgCode;
+        string cartType;
+        string licensee;
+        byte versionNumber = 1;
 
         // Special feature flags
         bool cgbOnly = false;
@@ -70,7 +102,7 @@ namespace goober {
 
         // ROM data
         std::vector<RomBank> romBanks;
-        uint16_t activeBank = 1;
+        word activeBank = 1;
 
     private:
         /**
@@ -85,28 +117,28 @@ namespace goober {
          * @param code hex code from the address 0x014B in ROM
          * @return string containing the licensee name if it was found
          */
-        std::string determineLicensee(uint8_t code);
+        string determineLicensee(byte code);
 
         /**
          * Sets which memory bank to use in place of bankNN.
          * 
          * @param bankIdx index of the bank to switch bankNN over to
          */
-        void setBank(uint16_t bankIdx);
+        void setBank(word bankIdx);
 
         /**
          * Copies the data from inData to bank00.
          *
          * @param inData
          */
-        void loadBank00(const uint8_t* inData);
+        void loadBank00(const word* inData);
 
         /**
          * Copies the data from inData to bankNN.
          *
          * @param inData
          */
-        void loadBankNN(const uint8_t* inData);
+        void loadBankNN(const word* inData);
     };
 };
 #endif // ROM_HXX
