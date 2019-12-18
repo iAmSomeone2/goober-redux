@@ -1,7 +1,8 @@
-#ifndef CORE_HXX
-#define CORE_HXX
+#ifndef GOOBER_CORE_HXX
+#define GOOBER_CORE_HXX
 
 #include <filesystem>
+#include <cstdint>
 
 namespace goober {
     class Rom {
@@ -31,14 +32,14 @@ namespace goober {
          * @param address location in ROM to read from
          * @return a single byte containing the read data
          */
-        uint8_t read(uint16_t address);
+        byte read(word address);
 
-        uint8_t getRamSize();
+        byte getRamSize();
         std::string getTitle();
         std::string getMfgCode();
         std::string getCartType();
         std::string getLicensee();
-        uint8_t getVersionNumber();
+        byte getVersionNumber();
 
         bool getCgbFlag();
         bool getSgbFlag();

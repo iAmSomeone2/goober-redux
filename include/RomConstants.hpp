@@ -1,8 +1,8 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cert-err58-cpp"
 
-#ifndef ROM_CONSTANTS_HPP
-#define ROM_CONSTANTS_HPP
+#ifndef GOOBER_ROM_CONSTANTS_HPP
+#define GOOBER_ROM_CONSTANTS_HPP
 
 #include <map>
 #include <string>

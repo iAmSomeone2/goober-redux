@@ -5,16 +5,16 @@
 #ifndef GOOBER_ROMBANK_HPP
 #define GOOBER_ROMBANK_HPP
 
-#include <cstdint>
 #include <vector>
 #include <array>
 
 #include <RomConstants.hpp>
+#include <Definitions.hpp>
 
 namespace goober {
     class RomBank {
     private:
-        std::array<uint8_t, ROM_BANK_SIZE> data{};
+        std::array<byte, ROM_BANK_SIZE> data{};
     public:
         /**
          * Creates a RomBank object.
@@ -22,9 +22,9 @@ namespace goober {
         RomBank();
         /**
          * Creates a RomBank object with initialization data.
-         * @param initData uint8_t array of size 16384
+         * @param initData byte array of size 16384
          */
-        explicit RomBank(const uint8_t *initData);
+        explicit RomBank(const byte *initData);
         /**
          * Creates a RomBank object with initialization data.
          * @param initData char array of size 16384
@@ -32,9 +32,9 @@ namespace goober {
         explicit RomBank(const char *initData);
         /**
          * Creates a RomBank object with initialization data.
-         * @param initData uint8_t vector of size 16384
+         * @param initData byte vector of size 16384
          */
-        explicit RomBank(const std::vector<uint8_t>& initData);
+        explicit RomBank(const std::vector<byte>& initData);
         /**
          * Creates a RomBank object with initialization data.
          * @param initData char vector of size 16384
@@ -45,17 +45,17 @@ namespace goober {
          * Read the value at the specified address.
          *
          * @param address location in the bank to read from
-         * @return uint8_t containing the requested data.
+         * @return byte containing the requested data.
          */
-        uint8_t read(uint16_t address);
+        byte read(word address);
 
-        uint8_t &operator[](uint16_t index);
+        byte &operator[](word index);
 
         /**
          * Loads data into the ROM bank.
-         * @param initData uint8_t array of size 16384
+         * @param initData byte array of size 16384
          */
-        void loadBank(const uint8_t *initData);
+        void loadBank(const byte *initData);
         /**
          * Loads data into the ROM bank.
          * @param initData char array of size 16384
@@ -63,9 +63,9 @@ namespace goober {
         void loadBank(const char *initData);
         /**
          * Loads data into the ROM bank.
-         * @param initData uint8_t vector of size 16384
+         * @param initData byte vector of size 16384
          */
-        void loadBank(const std::vector<uint8_t>& initData);
+        void loadBank(const std::vector<byte>& initData);
         /**
          * Loads data into the ROM bank.
          * @param initData char vector of size 16384

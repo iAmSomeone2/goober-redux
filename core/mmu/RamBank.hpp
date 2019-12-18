@@ -2,12 +2,12 @@
 #define GOOBER_RAM_BANK_HPP
 
 #include <vector>
-#include <cstdint>
+#include <Definitions.hpp>
 
 namespace goober {
     class RamBank {
     private:
-        std::vector<uint8_t> data;
+        std::vector<byte> data;
     public:
         /**
          * Default constructor for a RAM bank. It defaults to 4KB.
@@ -31,11 +31,11 @@ namespace goober {
          * 
          * @param index location in array to access
          */
-        uint8_t &operator[](uint16_t index);
+        byte &operator[](word index);
 
-        uint8_t get(uint16_t index);
+        byte get(word index);
 
-        void set(uint8_t value, uint16_t index);
+        void set(byte value, word index);
     };
 };
 

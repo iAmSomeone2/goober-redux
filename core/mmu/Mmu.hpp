@@ -11,13 +11,16 @@
 #include "Rom.hpp"
 
 #include <RomConstants.hpp>
+#include <Definitions.hpp>
+
+namespace fs = std::filesystem;
 
 namespace goober {
     class MMU {
     private:
         bool isInitialized;
-        Ram ram;
-        Rom rom;
+        Ram *ram;
+        Rom *rom;
 
     public:
         /**
@@ -25,11 +28,13 @@ namespace goober {
          * be set immediately.
          * @param romPath path on filesystem to the ROM file.
          */
-        explicit MMU(const std::filesystem::path& romPath);
+        explicit MMU(const fs::path& romPath);
 
         MMU();
 
-        void init(const std::filesystem::path& romPath);
+        ~MMU();
+
+        void init(const fs::path& romPath);
 
         /**
          * Retrieves the byte at the specified memory address.
@@ -38,7 +43,7 @@ namespace goober {
          * @param address
          * @return
          */
-        uint8_t get(uint16_t address);
+        byte get(word address);
 
         /**
          * Sets a byte at the specified address.
@@ -48,7 +53,7 @@ namespace goober {
          * @param value byte to write
          * @param address location to write to
          */
-        void set(uint8_t value, uint16_t address);
+        void set(byte value, word address);
     };
 };
 

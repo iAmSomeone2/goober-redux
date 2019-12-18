@@ -8,16 +8,17 @@
 #include <vector>
 
 #include "RamBank.hpp"
+#include <Definitions.hpp>
 
 namespace goober {
-    static const uint16_t VRAM_START_IDX = 0x8000;
-    static const uint16_t EXRAM_START_IDX = 0xA000;
-    static const uint16_t WRAM_START_IDX = 0xC000;
-    static const uint16_t MIRROR_START_IDX = 0xE000;
-    static const uint16_t ATTRIB_TABLE_START_IDX = 0xFE00;
-    static const uint16_t ODDBALL_START_IDX = 0xFEA0;
-    static const uint16_t IO_REG_START_IDX = 0xFF00;
-    static const uint16_t HRAM_START_IDX = 0xFF80;
+    static const word VRAM_START_IDX = 0x8000;
+    static const word EXRAM_START_IDX = 0xA000;
+    static const word WRAM_START_IDX = 0xC000;
+    static const word MIRROR_START_IDX = 0xE000;
+    static const word ATTRIB_TABLE_START_IDX = 0xFE00;
+    static const word ODDBALL_START_IDX = 0xFEA0;
+    static const word IO_REG_START_IDX = 0xFF00;
+    static const word HRAM_START_IDX = 0xFF80;
 
     class Ram {
     private:
@@ -33,11 +34,11 @@ namespace goober {
         RamBank oddball;                    // 95 bytes
         RamBank ioRegisters;                // 127 bytes
         RamBank highRam;                    // 126 bytes
-        uint8_t ieRegister;
+        byte ieRegister;
 
-        uint8_t activeVideoRamBank;
-        uint8_t activeWorkRamBank;
-        uint8_t activeExternRamBank;
+        byte activeVideoRamBank;
+        byte activeWorkRamBank;
+        byte activeExternRamBank;
 
     public:
         /**
@@ -45,25 +46,25 @@ namespace goober {
         */
         Ram();
 
-        Ram(uint16_t vRamBankCount, uint16_t exRamBankCount, uint16_t workRamBankCount);
+        Ram(word vRamBankCount, word exRamBankCount, word workRamBankCount);
 
         /**
          * Non-destructively resizes the Video RAM Bank vector to hold more banks.
          * @param count new number of banks
          */
-        void setVRamBankCount(uint8_t count);
+        void setVRamBankCount(byte count);
 
         /**
          * Non-destructively resizes the External RAM Bank vector to hold more banks.
          * @param count new number of banks
          */
-        void setExRamBankCount(uint16_t count);
+        void setExRamBankCount(word count);
 
         /**
          * Non-destructively resizes the Work RAM Bank vector to hold more banks.
          * @param count new number of banks
          */
-        void setWRamBankCount(uint16_t count);
+        void setWRamBankCount(word count);
 
         /**
          * Retrieves a byte from the specified address.
@@ -71,7 +72,7 @@ namespace goober {
          * @param address location to read the byte from
          * @return byte from the location specified
          */
-        uint8_t get(const uint16_t& address);
+        byte get(const word& address);
 
         /**
          * Sets a byte at the specified address.
@@ -79,7 +80,7 @@ namespace goober {
          * @param value byte to write to memory
          * @param address location to write to in memory
          */
-        void set(uint8_t value, uint16_t address);
+        void set(byte value, word address);
     };
 };
 

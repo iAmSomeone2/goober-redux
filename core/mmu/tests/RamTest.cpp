@@ -31,7 +31,7 @@ TEST_F(RamTest, ReadAndWriteAllRAM) {
     for (int i = START_IDX; i <= END_IDX; i++) {
         uint8_t testVal = distribution(generator);
         ram.set(testVal, i);
-        ASSERT_EQ(testVal, ram.get(i)) << boost::format("Problem at address: 0x%04x") % i << std::endl;
+        ASSERT_EQ(testVal, ram.get(i)) << boost::format("Problem at address: 0x%04X") % i << std::endl;
     }
 }
 
