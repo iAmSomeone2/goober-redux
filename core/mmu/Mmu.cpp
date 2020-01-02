@@ -49,7 +49,7 @@ void MMU::init(const std::filesystem::path &romPath) {
  * @param address
  * @return
  */
-byte MMU::get(word address) {
+byte MMU::get(const mem_loc& address) {
     if (!isInitialized) {
         throw std::runtime_error("MMU not initialized.");
     }
@@ -73,7 +73,7 @@ byte MMU::get(word address) {
  * @param value byte to write
  * @param address location to write to
  */
-void MMU::set(byte value, word address) {
+void MMU::set(const byte& value, const mem_loc& address) {
     if (!isInitialized) {
         throw std::runtime_error("MMU not initialized.");
     }

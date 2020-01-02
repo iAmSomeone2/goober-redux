@@ -43,7 +43,7 @@ namespace goober {
          * @param address
          * @return
          */
-        byte get(word address);
+        byte get(const mem_loc& address);
 
         /**
          * Sets a byte at the specified address.
@@ -53,7 +53,7 @@ namespace goober {
          * @param value byte to write
          * @param address location to write to
          */
-        void set(byte value, word address);
+        void set(const byte& value, const mem_loc& address);
     };
 };
 

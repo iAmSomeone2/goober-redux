@@ -46,25 +46,25 @@ namespace goober {
         */
         Ram();
 
-        Ram(word vRamBankCount, word exRamBankCount, word workRamBankCount);
+        Ram(const word& vRamBankCount, const word& exRamBankCount, const word& workRamBankCount);
 
         /**
          * Non-destructively resizes the Video RAM Bank vector to hold more banks.
          * @param count new number of banks
          */
-        void setVRamBankCount(byte count);
+        void setVRamBankCount(const byte& count);
 
         /**
          * Non-destructively resizes the External RAM Bank vector to hold more banks.
          * @param count new number of banks
          */
-        void setExRamBankCount(word count);
+        void setExRamBankCount(const word& count);
 
         /**
          * Non-destructively resizes the Work RAM Bank vector to hold more banks.
          * @param count new number of banks
          */
-        void setWRamBankCount(word count);
+        void setWRamBankCount(const word& count);
 
         /**
          * Retrieves a byte from the specified address.
@@ -72,7 +72,7 @@ namespace goober {
          * @param address location to read the byte from
          * @return byte from the location specified
          */
-        byte get(const word& address);
+        byte get(const mem_loc& address);
 
         /**
          * Sets a byte at the specified address.
@@ -80,7 +80,7 @@ namespace goober {
          * @param value byte to write to memory
          * @param address location to write to in memory
          */
-        void set(byte value, word address);
+        void set(const byte& value, const mem_loc& address);
     };
 };
 

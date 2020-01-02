@@ -17,25 +17,25 @@ namespace goober {
         /**
          *  Creates a RAM bank of the specified size. 
          */
-        explicit RamBank(int bankSize);
+        explicit RamBank(const int& bankSize);
 
         /**
          * Sets the size of the data vector.
          *
          * @param bankSize number of bytes to resize to
          */
-        void setSize(int bankSize);
+        void setSize(const int& bankSize);
 
         /**
          * Provides access to the underlying data vector.
          * 
          * @param index location in array to access
          */
-        byte &operator[](word index);
+        byte &operator[](const mem_loc& index);
 
-        byte get(word index);
+        byte get(const mem_loc& index);
 
-        void set(byte value, word index);
+        void set(const byte& value, const mem_loc& index);
     };
 };
 

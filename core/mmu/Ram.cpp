@@ -33,7 +33,7 @@ Ram::Ram() {
     activeExternRamBank = 0b00;
 }
 
-Ram::Ram(word vRamBankCount, word exRamBankCount, word workRamBankCount) {
+Ram::Ram(const word& vRamBankCount, const word& exRamBankCount, const word& workRamBankCount) {
     if (vRamBankCount >= 1) {
         videoRamBanks.resize(vRamBankCount);
     } else {
@@ -71,7 +71,7 @@ Ram::Ram(word vRamBankCount, word exRamBankCount, word workRamBankCount) {
     activeExternRamBank = 0b00;
 }
 
-byte Ram::get(const word& address) {
+byte Ram::get(const mem_loc& address) {
     if (address >= VRAM_START_IDX && address < EXRAM_START_IDX) {
         // Video RAM section
         word location = address - VRAM_START_IDX;
@@ -122,7 +122,7 @@ byte Ram::get(const word& address) {
     }
 }
 
-void Ram::set(byte value, word address) {
+void Ram::set(const byte& value, const mem_loc& address) {
     if (address >= VRAM_START_IDX && address < EXRAM_START_IDX) {
         // Video RAM section
         word location = address - VRAM_START_IDX;
@@ -177,7 +177,7 @@ void Ram::set(byte value, word address) {
  * Non-destructively resizes the Video RAM Bank vector to hold more banks.
  * @param count new number of banks
  */
-void Ram::setVRamBankCount(byte count) {
+void Ram::setVRamBankCount(const byte& count) {
     videoRamBanks.resize(count);
 }
 
@@ -185,7 +185,7 @@ void Ram::setVRamBankCount(byte count) {
  * Non-destructively resizes the External RAM Bank vector to hold more banks.
  * @param count new number of banks
  */
-void Ram::setExRamBankCount(word count) {
+void Ram::setExRamBankCount(const word& count) {
     externRamBanks.resize(count);
 }
 
@@ -193,6 +193,6 @@ void Ram::setExRamBankCount(word count) {
  * Non-destructively resizes the Work RAM Bank vector to hold more banks.
  * @param count new number of banks
  */
-void Ram::setWRamBankCount(word count) {
+void Ram::setWRamBankCount(const word& count) {
     workRamBanks.resize(count);
 }

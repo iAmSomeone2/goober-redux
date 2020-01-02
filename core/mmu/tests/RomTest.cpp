@@ -16,8 +16,8 @@ protected:
     std::string expectedLicensee;
 
     RomTest() {
-        testRom = TEST_ROM_DESKTOP;
-        expectedTitle = "SUPER MARIOLAND";
+        testRom = TEST_ROM_LAPTOP;
+        expectedTitle = "TETRIS";
         expectedLicensee = "nintendo";
     }
 };

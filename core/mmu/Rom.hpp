@@ -44,7 +44,7 @@ namespace goober {
          * @param address location in ROM to read from
          * @return a single byte containing the read data
          */
-        byte read(word address);
+        byte read(const mem_loc& address);
 
         // Getters
         /**
@@ -117,14 +117,14 @@ namespace goober {
          * @param code hex code from the address 0x014B in ROM
          * @return string containing the licensee name if it was found
          */
-        string determineLicensee(byte code);
+        string determineLicensee(const byte& code);
 
         /**
          * Sets which memory bank to use in place of bankNN.
          * 
          * @param bankIdx index of the bank to switch bankNN over to
          */
-        void setBank(word bankIdx);
+        void setBank(const mem_loc& bankIdx);
 
         /**
          * Copies the data from inData to bank00.

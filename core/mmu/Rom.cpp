@@ -118,7 +118,7 @@ void Rom::saveRomInfo() {
  * @param code hex code from the address 0x014B in ROM
  * @return string containing the licensee name if it was found
  */
-string Rom::determineLicensee(byte code) {
+string Rom::determineLicensee(const byte& code) {
     string tmpLicensee;
 
     if (code == 0x33) {
@@ -140,7 +140,7 @@ string Rom::determineLicensee(byte code) {
  * @param address location in ROM to read from
  * @return a single byte containing the read data
  */
-byte Rom::read(word address) {
+byte Rom::read(const mem_loc& address) {
     if ( address <= 0x3FFF) {
         // Read from bank00
         return romBanks[0][address];
@@ -156,7 +156,7 @@ byte Rom::read(word address) {
  * 
  * @param bankIdx index of the bank to switch bankNN over to
  */
-void Rom::setBank(word bankIdx) {
+void Rom::setBank(const mem_loc& bankIdx) {
     activeBank = bankIdx;
 }
 

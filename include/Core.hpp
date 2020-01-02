@@ -4,6 +4,8 @@
 #include <filesystem>
 #include <cstdint>
 
+#include <Definitions.hpp>
+
 namespace goober {
     class Rom {
     public:

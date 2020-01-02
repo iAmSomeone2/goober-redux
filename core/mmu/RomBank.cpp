@@ -27,11 +27,11 @@ RomBank::RomBank(const std::vector<char>& initData) {
     loadBank(initData);
 }
 
-byte RomBank::read(word address) {
+byte RomBank::read(const mem_loc& address) {
     return data[address];
 }
 
-byte &RomBank::operator[](word index) {
+byte &RomBank::operator[](const mem_loc& index) {
     return data[index];
 }
 

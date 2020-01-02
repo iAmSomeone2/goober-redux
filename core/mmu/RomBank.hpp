@@ -47,9 +47,9 @@ namespace goober {
          * @param address location in the bank to read from
          * @return byte containing the requested data.
          */
-        byte read(word address);
+        byte read(const mem_loc& address);
 
-        byte &operator[](word index);
+        byte &operator[](const mem_loc& index);
 
         /**
          * Loads data into the ROM bank.
