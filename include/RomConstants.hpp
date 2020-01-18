@@ -1,6 +1,3 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "cert-err58-cpp"
-
 #ifndef GOOBER_ROM_CONSTANTS_HPP
 #define GOOBER_ROM_CONSTANTS_HPP
 
@@ -237,4 +234,3 @@ namespace goober {
 };
 
 #endif
-#pragma clang diagnostic pop

@@ -1,0 +1,1 @@
+option('enable_testing', type: 'boolean', value: true, description: 'Determines whether to build the testing suite.')

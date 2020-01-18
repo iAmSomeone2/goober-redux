@@ -1,5 +1,3 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "cert-err58-cpp"
 //
 // Created by Brenden Davidson on 11/4/19.
 //
@@ -15,7 +13,7 @@
 
 class MMUTest : public ::testing::Test {
 protected:
-    const std::filesystem::path TEST_ROM = TEST_ROM_DESKTOP;
+    const std::filesystem::path TEST_ROM = TEST_ROM_LAPTOP;
     static const uint16_t START_IDX = 0x0000;
     static const uint16_t ROM_END_IDX = 0x7FFF;
     static const uint16_t RAM_START_IDX = 0x8000;
@@ -70,4 +68,3 @@ int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-#pragma clang diagnostic pop
