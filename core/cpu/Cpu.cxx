@@ -1,3 +1,6 @@
+#include <iostream>
+#include <boost/format.hpp>
+
 #include "Cpu.hxx"
 
 using namespace goober;
@@ -7,43 +10,7 @@ Cpu::Cpu() {
     // Reserve space for the MMU
     this->mmu = new MMU();
 
-    // Load in all operation arguments.
-    // 8-bit immediate value loads.
-    ByteLdArgs ld_b_n_args = {&this->regBC.hiByte, &this->programCounter, this->mmu};
-    ByteLdArgs ld_c_n_args = {&this->regBC.loByte, &this->programCounter, this->mmu};
-    ByteLdArgs ld_d_n_args = {&this->regDE.hiByte, &this->programCounter, this->mmu};
-    ByteLdArgs ld_e_n_args = {&this->regDE.loByte, &this->programCounter, this->mmu};
-    ByteLdArgs ld_h_n_args = {&this->regHL.hiByte, &this->programCounter, this->mmu};
-    ByteLdArgs ld_l_n_args = {&this->regHL.loByte, &this->programCounter, this->mmu};
-    // 8-bit register loads.
-    ByteRegLdArgs ld_a_a_args = {&this->regAF.hiByte, &this->regAF.hiByte};
-    ByteRegLdArgs ld_a_b_args = {&this->regAF.hiByte, &this->regBC.hiByte};
-    ByteRegLdArgs ld_a_c_args = {&this->regAF.hiByte, &this->regBC.loByte};
-    ByteRegLdArgs ld_a_d_args = {&this->regAF.hiByte, &this->regDE.hiByte};
-    ByteRegLdArgs ld_a_e_args = {&this->regAF.hiByte, &this->regDE.loByte};
-    ByteRegLdArgs ld_a_h_args = {&this->regAF.hiByte, &this->regHL.hiByte};
-    ByteRegLdArgs ld_a_l_args = {&this->regAF.hiByte, &this->regHL.loByte};
-
-    // Load in all of the operations.
-    this->cpuOps = {
-            {OpCode::NOP,   Operation{(opfunc)NOP, nullptr, 4}},
-            {OpCode::HALT,  Operation{(opfunc)HALT, nullptr, 4}},
-            // 8-bit immediate loads
-            {OpCode::LD_b_n, Operation{(opfunc)LD_nn_n, reinterpret_cast<void *>(&ld_b_n_args), 8}},
-            {OpCode::LD_c_n, Operation{(opfunc)LD_nn_n, reinterpret_cast<void *>(&ld_c_n_args), 8}},
-            {OpCode::LD_d_n, Operation{(opfunc)LD_nn_n, reinterpret_cast<void *>(&ld_d_n_args), 8}},
-            {OpCode::LD_e_n, Operation{(opfunc)LD_nn_n, reinterpret_cast<void *>(&ld_e_n_args), 8}},
-            {OpCode::LD_h_n, Operation{(opfunc)LD_nn_n, reinterpret_cast<void *>(&ld_h_n_args), 8}},
-            {OpCode::LD_l_n, Operation{(opfunc)LD_nn_n, reinterpret_cast<void *>(&ld_l_n_args), 8}},
-            // 8-bit register loads
-            {OpCode::LD_a_a, Operation{(opfunc)LD_r1_r2, reinterpret_cast<void *>(&ld_a_a_args), 4}},
-            {OpCode::LD_a_b, Operation{(opfunc)LD_r1_r2, reinterpret_cast<void *>(&ld_a_b_args), 4}},
-            {OpCode::LD_a_c, Operation{(opfunc)LD_r1_r2, reinterpret_cast<void *>(&ld_a_c_args), 4}},
-            {OpCode::LD_a_d, Operation{(opfunc)LD_r1_r2, reinterpret_cast<void *>(&ld_a_d_args), 4}},
-            {OpCode::LD_a_e, Operation{(opfunc)LD_r1_r2, reinterpret_cast<void *>(&ld_a_e_args), 4}},
-            {OpCode::LD_a_h, Operation{(opfunc)LD_r1_r2, reinterpret_cast<void *>(&ld_a_h_args), 4}},
-            {OpCode::LD_a_l, Operation{(opfunc)LD_r1_r2, reinterpret_cast<void *>(&ld_a_l_args), 4}},
-        };
+    this->cycleCount = 0;
 }
 
 Cpu::~Cpu() {
@@ -60,32 +27,130 @@ void Cpu::run(const fs::path& romPath) {
     // Load in the rom
     this->mmu->init(romPath);
 
+    byte currentByte;
+    while (true) {
+        // Read current byte and increment program counter.
+        currentByte = this->mmu->get(this->programCounter);
+        this->programCounter++;
 
+        switch (currentByte) {
+            case OpCode::NOP:
+               nop();
+               this->cycleCount += cpuCycles[OpCode::NOP];
+               break;
+            case OpCode::HALT:
+                halt();
+                this->cycleCount += cpuCycles[OpCode::HALT];
+                break;
+            // 8-bit loads
+            // LD_nn_n
+            case OpCode::LD_b_n:
+                LD_nn_n('b');
+                this->cycleCount += cpuCycles[OpCode::LD_b_n];
+                break;
+            case OpCode::LD_c_n:
+                LD_nn_n('c');
+                this->cycleCount += cpuCycles[OpCode::LD_c_n];
+                break;
+            case OpCode::LD_d_n:
+                LD_nn_n('d');
+                this->cycleCount += cpuCycles[OpCode::LD_d_n];
+                break;
+            case OpCode::LD_e_n:
+                LD_nn_n('e');
+                this->cycleCount += cpuCycles[OpCode::LD_e_n];
+                break;
+            case OpCode::LD_h_n:
+                LD_nn_n('h');
+                this->cycleCount += cpuCycles[OpCode::LD_h_n];
+                break;
+            case OpCode::LD_l_n:
+                LD_nn_n('l');
+                this->cycleCount += cpuCycles[OpCode::LD_l_n];
+                break;
+            // LD_r1_r2
+            
+            default:
+                std::cerr << boost::format("Unrecognized opcode: 0x%X\n") % currentByte;
+        }
+    }
 }
 
-// void Cpu::LDr1_hlMem(const char& reg, const char& not_used) {
-//     byte& byteReg = getByteReg(reg);
+byte* Cpu::getByteRegister(const char& reg) {
+    byte* smallReg;
 
-//     word readLoc = this->regHL.fullWord();
-//     word value = this->mmu->get(readLoc);
+    switch (reg) {
+        case 'a':
+            smallReg = &this->regAF.hiByte;
+            break;
+        case 'f':
+            smallReg = &this->regAF.loByte;
+            break;
+        case 'b':
+            smallReg = &this->regBC.hiByte;
+            break;
+        case 'c':
+            smallReg = &this->regBC.loByte;
+            break;
+        case 'd':
+            smallReg = &this->regDE.hiByte;
+            break;
+        case 'e':
+            smallReg = &this->regDE.loByte;
+            break;
+        case 'h':
+            smallReg = &this->regHL.hiByte;
+            break;
+        case 'l':
+            smallReg = &this->regHL.loByte;
+            break;
+        default:
+            return nullptr;
+    }
 
-//     byteReg = value;
-// }
+    return smallReg;
+}
 
-// void Cpu::LDhlMem_val(const char& reg, const char& not_used) {
-//     // Deal with the situation in which an immediate value is read.
-//     bool isImmediate = (reg == 'n');
+void Cpu::LD_nn_n(const char& reg) {
+    byte* byteReg = getByteRegister(reg);
 
-//     byte value = 0;
+    byte value = this->mmu->get(this->programCounter);
+    this->programCounter++;
 
-//     if (!isImmediate) {
-//         byte& byteReg = getByteReg(reg);
-//         value = byteReg;
-//     } else {
-//         word readLoc = this->programCounter;
-//         value = this->mmu->get(readLoc);
-//     }
+    *byteReg = value;
+}
 
-//     word writeLoc = this->regHL.fullWord();
-//     this->mmu->set(value, writeLoc);
-// }
+void Cpu::LD_r1_r2(const char& reg1, const char& reg2) {
+    byte* byteReg1 = getByteRegister(reg1);
+    byte* byteReg2 = getByteRegister(reg2);
+
+    *byteReg1 = *byteReg2;
+}
+
+void Cpu::LDr1_hlMem(const char& reg) {
+    byte* byteReg = getByteRegister(reg);
+
+    word readLoc = this->regHL.fullWord();
+    word value = this->mmu->get(readLoc);
+
+    *byteReg = value;
+}
+
+void Cpu::LDhlMem_val(const char& reg) {
+    // Deal with the situation in which an immediate value is read.
+    bool isImmediate = (reg == 'n');
+
+    byte value = 0;
+
+    if (!isImmediate) {
+        byte* byteReg = getByteRegister(reg);
+        value = *byteReg;
+    } else {
+        word readLoc = this->programCounter;
+        value = this->mmu->get(readLoc);
+        this->programCounter++;
+    }
+
+    word writeLoc = this->regHL.fullWord();
+    this->mmu->set(value, writeLoc);
+}
