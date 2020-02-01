@@ -9,8 +9,9 @@
 **/.idea/
 
 # Build directories
-**/cmake-build-debug/
-**/cmake-build-release/
-**/build/
-**/debug/
-**/release/
+**/[Cc]make-[Bb]uild-[Dd]ebug/
+**/[Cc]make-[Bb]uild-[Rr]elease/
+**/[Bb]uild[Dd]ir/
+**/[Bb]uild/
+**/[Dd]ebug/
+**/[Rr]elease/

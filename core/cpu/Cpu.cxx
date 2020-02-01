@@ -69,7 +69,10 @@ void Cpu::run(const fs::path& romPath) {
                 this->cycleCount += cpuCycles[OpCode::LD_l_n];
                 break;
             // LD_r1_r2
-            
+            case OpCode::LD_a_a:
+                LD_r1_r2('a', 'a');
+                this->cycleCount += cpuCycles[OpCode::LD_a_a];
+                break;
             default:
                 std::cerr << boost::format("Unrecognized opcode: 0x%X\n") % currentByte;
         }

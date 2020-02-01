@@ -1,1 +1,3 @@
-option('enable_testing', type: 'boolean', value: true, description: 'Determines whether to build the testing suite.')
+option('enable_testing', type: 'boolean', value: false,
+    description: 'Determines whether to build the testing suite.'
+)
